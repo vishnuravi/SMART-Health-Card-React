@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route} from 'react-router-dom';
-import HealthCard from './components/HealthCard';
-import SMARTLauncher from './components/SMARTLauncher';
-import Login from './components/Login';
+import HealthCard from './HealthCard';
+import SMARTLauncher from './SMARTLauncher';
+import Login from './Login';
 
 function App() {
   return (
