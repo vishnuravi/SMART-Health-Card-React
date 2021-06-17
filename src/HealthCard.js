@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import FHIR from 'fhirclient';
-import { Container, Card } from 'react-bootstrap';
+import { Container, Card, ListGroup } from 'react-bootstrap';
 import verifyAndDecodeHealthCard from './utils/verifyAndDecode';
 import getHealthCard from './utils/getHealthCard';
 
@@ -29,27 +29,30 @@ const Home = () => {
 
     return (
         <Container className="mt-4">
-            <Card>
+            <Card className="shadow">
                 <Card.Body>
-                    <Card.Title><h1>COVID-19 Vaccination Record</h1></Card.Title>
+                    <Card.Title><h2>COVID-19 Vaccination Record</h2></Card.Title>
                     <Card.Text>
                         {
                             healthCard ?
                                 <div>
-                                    <p><strong>Issuer:</strong> {healthCard.iss}</p>
-                                    <p><strong>Name:</strong> {extractName(healthCard)}</p>
-                                    <p><strong>Doses:</strong></p>
+                                    <ListGroup>
+                                    <ListGroup.Item><strong>Issuer:</strong> {healthCard.iss}</ListGroup.Item>
+                                    <ListGroup.Item><strong>Patient Name:</strong> {extractName(healthCard)}</ListGroup.Item>
+                                    <ListGroup.Item><p><strong>Doses Received:</strong></p>
                                     {
                                         extractDoses(healthCard).map((dose) => {
                                             return (
                                             <p>
                                                 <i>Date</i>: {dose.resource.occurrenceDateTime} <br />
-                                                <i>CVX</i>: {dose.resource.vaccineCode.coding[0].code} <br />
+                                                <i>CVX Code</i>: {dose.resource.vaccineCode.coding[0].code} <br />
                                                 <i>Location:</i> {dose.resource.performer[0].actor.display}
                                             </p>
                                             );
                                         })
                                     }
+                                    </ListGroup.Item>
+                                    </ListGroup>
                                 </div>
                                 :
                                 <div>
