@@ -3,6 +3,7 @@ import axios from 'axios';
 import FHIR from 'fhirclient';
 import jose from 'node-jose';
 import zlib from 'zlib';
+import { Container } from 'react-bootstrap';
 
 const Home = () => {
     const [healthCard, setHealthCard] = useState();
@@ -75,10 +76,12 @@ const Home = () => {
     }, []);
 
     return (
-        <div>
-            <h1>SMART Health Card - JWS</h1>
+        <Container className="text-center mt-2">
+            <h1>SMART Health Card</h1>
+            <br />
+            <h3>Decoded JWS</h3>
             <p>{healthCard}</p>
-        </div>
+        </Container>
     )
 }
 
